@@ -11,6 +11,16 @@ import spock.lang.Specification
 
 import java.time.Instant
 
+/**
+ * Integration test for {@link MeteredDomainEventPublisher}.
+ *
+ * Verifies that domain events published through the metered publisher are correctly
+ * counted in the Micrometer {@link MeterRegistry}. Each published event should increment
+ * the "domain_events" counter, tagged with the event class name.
+ *
+ * Uses {@link DomainEventsTestConfig} to wire up the store-and-forward event pipeline
+ * backed by {@link InMemoryEventsStorage}.
+ */
 @SpringBootTest(classes = [LendingTestContext.class, DomainEventsTestConfig.class])
 class MeteredDomainEventPublisherIT extends Specification {
 

@@ -26,6 +26,15 @@ import static io.pillopl.library.lending.patron.model.PatronEvent.PatronCreated
 import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 import static io.pillopl.library.lending.patron.model.PatronType.Regular
 
+/**
+ * Integration test for the duplicate hold compensation mechanism.
+ *
+ * Verifies that when two different patrons attempt to place a hold on the same book,
+ * the system detects the duplicate hold and triggers a compensation event that cancels
+ * the second patron's hold. Uses the store-and-forward event pipeline
+ * ({@link DomainEventsTestConfig}) and polls for the eventual consistency outcome
+ * where the second patron ends up with zero holds.
+ */
 @SpringBootTest(classes = [LendingTestContext.class, DomainEventsTestConfig.class])
 class DuplicateHoldFoundIT extends Specification {
 

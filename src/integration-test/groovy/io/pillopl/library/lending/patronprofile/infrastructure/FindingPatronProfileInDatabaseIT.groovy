@@ -27,6 +27,16 @@ import static io.pillopl.library.lending.librarybranch.model.LibraryBranchFixtur
 import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 import static java.time.Instant.now
 
+/**
+ * Integration test for the {@link PatronProfileReadModel} backed by a real database.
+ *
+ * Verifies the full lifecycle of a patron profile read model by processing domain events
+ * (BookPlacedOnHold, BookCheckedOut, BookReturned) through the {@link DailySheet} and
+ * asserting that the profile correctly reflects current holds and checkouts.
+ *
+ * Tests the complete flow: empty profile -> hold placed -> book checked out -> book returned
+ * -> back to empty profile.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class FindingPatronProfileInDatabaseIT extends Specification {
 

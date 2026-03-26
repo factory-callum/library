@@ -16,6 +16,13 @@ import static io.pillopl.library.lending.book.model.BookFixture.circulatingAvail
 import static io.pillopl.library.lending.librarybranch.model.LibraryBranchFixture.anyBranch
 import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 
+/**
+ * Integration test for {@link BookDatabaseRepository} basic persistence.
+ *
+ * Verifies that saving an AvailableBook to the database and loading it back correctly
+ * reconstructs the domain object with the proper type. This is a fundamental smoke test
+ * for the book aggregate persistence layer.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class BookDatabaseRepositoryIT extends Specification {
 

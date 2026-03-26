@@ -20,6 +20,13 @@ import static io.pillopl.library.lending.patron.model.PatronEvent.BookPlacedOnHo
 import static io.pillopl.library.lending.patron.model.PatronEvent.BookPlacedOnHoldEvents.events
 import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 
+/**
+ * Integration test for finding books on hold in the database via {@link BookDatabaseRepository}.
+ *
+ * Verifies that {@code findBookOnHold(bookId, patronId)} returns empty when the book is
+ * available, and returns the held book after a BookPlacedOnHold event transitions it
+ * from AvailableBook to BookOnHold state.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class FindBookOnHoldInDatabaseIT extends Specification {
 

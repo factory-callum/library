@@ -10,6 +10,19 @@ import static io.pillopl.library.catalogue.BookFixture.NON_PRESENT_ISBN
 import static io.pillopl.library.catalogue.BookInstance.instanceOf
 import static io.pillopl.library.catalogue.BookType.Restricted
 
+/**
+ * Integration test for {@link CatalogueDatabase} persistence operations.
+ *
+ * Verifies basic CRUD operations for the book catalogue against a real database:
+ * <ul>
+ *   <li>Saving and loading a new book by ISBN</li>
+ *   <li>Returning empty when querying for a non-existent ISBN</li>
+ *   <li>Saving a book instance (specific copy with a type, e.g. Restricted)</li>
+ * </ul>
+ *
+ * Uses {@link CatalogueConfiguration} as the Spring context, which is the standalone
+ * configuration for the Catalogue bounded context.
+ */
 @SpringBootTest(classes = CatalogueConfiguration.class)
 class CatalogueDatabaseIT extends Specification {
 

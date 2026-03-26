@@ -20,6 +20,13 @@ import static io.pillopl.library.lending.patron.model.PatronEvent.BookPlacedOnHo
 import static io.pillopl.library.lending.patron.model.PatronEvent.BookPlacedOnHoldEvents.events
 import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 
+/**
+ * Integration test for finding available books in the database via {@link BookDatabaseRepository}.
+ *
+ * Verifies that {@code findAvailableBookBy(bookId)} returns the book when it is in the
+ * AvailableBook state, and returns empty after a BookPlacedOnHold event transitions it
+ * to the BookOnHold state.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class FindAvailableBookInDatabaseIT extends Specification {
 

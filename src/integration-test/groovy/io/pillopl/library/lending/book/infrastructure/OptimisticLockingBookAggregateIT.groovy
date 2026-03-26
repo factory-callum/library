@@ -23,6 +23,15 @@ import static io.pillopl.library.lending.patron.model.PatronEvent.BookPlacedOnHo
 import static io.pillopl.library.lending.patron.model.PatronEvent.BookPlacedOnHoldEvents.events
 import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 
+/**
+ * Integration test for optimistic locking on the Book aggregate.
+ *
+ * Verifies that concurrent modifications to the same book are detected and rejected.
+ * When a book is loaded, modified by another process in the meantime, and then saved,
+ * an {@link io.pillopl.library.commons.aggregates.AggregateRootIsStale} exception
+ * should be thrown, and the version in the database should reflect only the first
+ * successful modification.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class OptimisticLockingBookAggregateIT extends Specification {
 

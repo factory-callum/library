@@ -23,6 +23,20 @@ import static java.time.Clock.fixed
 import static java.time.Instant.now
 import static java.time.ZoneId.systemDefault
 
+/**
+ * Integration test for the daily sheet overdue checkout query against a real database.
+ *
+ * Verifies that the {@link SheetsReadModel} correctly identifies overdue checkouts:
+ * <ul>
+ *   <li>Books checked out until yesterday appear as overdue</li>
+ *   <li>Books checked out until tomorrow do not appear as overdue</li>
+ *   <li>Handling the same BookCheckedOut event twice is idempotent</li>
+ *   <li>Returned books are never reported as overdue</li>
+ * </ul>
+ *
+ * Uses a fixed clock set to {@code TIME_OF_EXPIRE_CHECK} to deterministically control
+ * which checkouts are considered overdue.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class FindingOverdueCheckoutsInDailySheetDatabaseIT extends Specification {
 

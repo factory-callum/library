@@ -24,6 +24,14 @@ import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 import static io.pillopl.library.lending.patron.model.PatronFixture.regularPatron
 import static io.pillopl.library.lending.patron.model.PatronType.Regular
 
+/**
+ * Integration test for the patron event-sourced repository against a real database.
+ *
+ * Verifies that publishing patron domain events (PatronCreated, BookPlacedOnHold) correctly
+ * persists and reconstructs the Patron aggregate. After creating a patron, the repository
+ * should find them with zero holds; after publishing a hold event, the patron should have
+ * exactly one book on hold.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class PatronDatabaseRepositoryIT extends Specification {
 

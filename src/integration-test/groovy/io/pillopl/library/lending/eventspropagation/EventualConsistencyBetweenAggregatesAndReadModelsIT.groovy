@@ -30,6 +30,21 @@ import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 import static io.pillopl.library.lending.patron.model.PatronFixture.regularPatron
 import static io.pillopl.library.lending.patron.model.PatronType.Regular
 
+/**
+ * Integration test verifying eventual consistency between aggregates and read models.
+ *
+ * Uses {@link DomainEventsTestConfig} to wire the store-and-forward event pipeline backed
+ * by {@link io.pillopl.library.common.events.publisher.InMemoryEventsStorage}, simulating
+ * asynchronous event delivery. After a BookPlacedOnHold event is published:
+ * <ul>
+ *   <li>Patron aggregate - updated immediately (strong consistency)</li>
+ *   <li>Book aggregate - transitions to BookOnHold eventually (polled with timeout)</li>
+ *   <li>Daily sheet read model - updated eventually (polled with timeout)</li>
+ * </ul>
+ *
+ * Uses Spock's {@link spock.util.concurrent.PollingConditions} to wait for asynchronous
+ * updates with a configurable timeout.
+ */
 @SpringBootTest(classes = [LendingTestContext.class, DomainEventsTestConfig.class])
 class EventualConsistencyBetweenAggregatesAndReadModelsIT extends Specification {
 

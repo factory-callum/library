@@ -28,6 +28,20 @@ import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 import static io.pillopl.library.lending.patron.model.PatronFixture.regularPatron
 import static io.pillopl.library.lending.patron.model.PatronType.Regular
 
+/**
+ * Integration test verifying strong (synchronous) consistency between aggregates and read models.
+ *
+ * When a BookPlacedOnHold event is published through the default (non-store-and-forward)
+ * event pipeline, the following should be updated within the same transaction:
+ * <ul>
+ *   <li>Patron aggregate - reflects the new hold</li>
+ *   <li>Book aggregate - transitions from AvailableBook to BookOnHold</li>
+ *   <li>Daily sheet read model - records the hold for expiry tracking</li>
+ * </ul>
+ *
+ * This contrasts with {@link EventualConsistencyBetweenAggregatesAndReadModelsIT} which
+ * uses the store-and-forward pipeline for asynchronous propagation.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class StrongConsistencyBetweenAggregatesAndReadModelsIT extends Specification {
 

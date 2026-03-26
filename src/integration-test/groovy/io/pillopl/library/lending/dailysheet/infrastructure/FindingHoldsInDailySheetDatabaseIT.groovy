@@ -24,6 +24,21 @@ import static java.time.Clock.fixed
 import static java.time.Instant.now
 import static java.time.ZoneId.systemDefault
 
+/**
+ * Integration test for the daily sheet expired holds query against a real database.
+ *
+ * Verifies that the {@link SheetsReadModel} correctly identifies holds eligible for expiry:
+ * <ul>
+ *   <li>Close-ended holds expiring before the check time are found</li>
+ *   <li>Close-ended holds expiring after the check time are not found</li>
+ *   <li>Handling the same BookPlacedOnHold event twice is idempotent</li>
+ *   <li>Open-ended holds are never considered expired</li>
+ *   <li>Canceled, already-expired, and checked-out holds are excluded</li>
+ * </ul>
+ *
+ * Uses a fixed clock set to {@code TIME_OF_EXPIRE_CHECK} to deterministically control
+ * which holds are considered expired.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class FindingHoldsInDailySheetDatabaseIT extends Specification {
 

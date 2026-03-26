@@ -44,6 +44,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Integration test for {@link PatronProfileController} using Spring's {@link WebMvcTest} slice.
+ *
+ * Validates the REST API layer for patron profiles, including:
+ * <ul>
+ *   <li>HAL+Forms JSON responses with correct HATEOAS links and affordances</li>
+ *   <li>Profile resource containing links to holds and checkouts sub-resources</li>
+ *   <li>Individual hold/checkout resource retrieval with self links</li>
+ *   <li>404 responses for non-existent holds and checkouts</li>
+ *   <li>Place-on-hold POST endpoint (success and failure cases)</li>
+ *   <li>Cancel-hold DELETE endpoint (success, not-found, and server-error cases)</li>
+ * </ul>
+ *
+ * Uses MockBean to isolate the controller from domain services ({@link PatronProfiles},
+ * {@link PlacingOnHold}, {@link CancelingHold}).
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(PatronProfileController.class)
 @ContextConfiguration(classes = {LendingTestContext.class})

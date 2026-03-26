@@ -7,6 +7,13 @@ import io.vavr.collection.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Thread-safe in-memory implementation of {@link EventsStorage} used in integration tests.
+ *
+ * Replaces the production event storage mechanism with a simple synchronized list,
+ * allowing tests to verify event publishing and forwarding behavior without requiring
+ * an external message broker or persistent storage.
+ */
 public class InMemoryEventsStorage implements EventsStorage {
 
     //it's not thread safe, enough for testing
