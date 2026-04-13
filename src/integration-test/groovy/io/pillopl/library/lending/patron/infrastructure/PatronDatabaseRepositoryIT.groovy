@@ -24,6 +24,9 @@ import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 import static io.pillopl.library.lending.patron.model.PatronFixture.regularPatron
 import static io.pillopl.library.lending.patron.model.PatronType.Regular
 
+/**
+ * Integration tests for persisting and reloading patron state from domain events.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class PatronDatabaseRepositoryIT extends Specification {
 

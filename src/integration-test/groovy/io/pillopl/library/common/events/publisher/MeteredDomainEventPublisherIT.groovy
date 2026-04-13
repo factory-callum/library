@@ -11,6 +11,9 @@ import spock.lang.Specification
 
 import java.time.Instant
 
+/**
+ * Integration tests for metric counting in metered domain event publishing.
+ */
 @SpringBootTest(classes = [LendingTestContext.class, DomainEventsTestConfig.class])
 class MeteredDomainEventPublisherIT extends Specification {
 

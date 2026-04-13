@@ -16,6 +16,9 @@ import static io.pillopl.library.lending.book.model.BookFixture.circulatingAvail
 import static io.pillopl.library.lending.librarybranch.model.LibraryBranchFixture.anyBranch
 import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 
+/**
+ * Integration tests for persisting and loading book aggregates in the database.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class BookDatabaseRepositoryIT extends Specification {
 

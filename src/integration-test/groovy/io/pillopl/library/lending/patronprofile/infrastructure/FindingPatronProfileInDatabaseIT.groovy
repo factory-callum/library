@@ -27,6 +27,9 @@ import static io.pillopl.library.lending.librarybranch.model.LibraryBranchFixtur
 import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 import static java.time.Instant.now
 
+/**
+ * Integration tests for building patron profiles from daily-sheet and patron events.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class FindingPatronProfileInDatabaseIT extends Specification {
 

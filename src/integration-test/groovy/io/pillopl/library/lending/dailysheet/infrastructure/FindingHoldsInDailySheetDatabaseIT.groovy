@@ -24,6 +24,9 @@ import static java.time.Clock.fixed
 import static java.time.Instant.now
 import static java.time.ZoneId.systemDefault
 
+/**
+ * Integration tests for tracking expiring holds in the daily sheet read model.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class FindingHoldsInDailySheetDatabaseIT extends Specification {
 
