@@ -26,6 +26,9 @@ import static io.pillopl.library.lending.patron.model.PatronEvent.PatronCreated
 import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 import static io.pillopl.library.lending.patron.model.PatronType.Regular
 
+/**
+ * Integration tests for duplicate-hold compensation across patron and book aggregates.
+ */
 @SpringBootTest(classes = [LendingTestContext.class, DomainEventsTestConfig.class])
 class DuplicateHoldFoundIT extends Specification {
 

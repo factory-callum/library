@@ -10,6 +10,9 @@ import static io.pillopl.library.catalogue.BookFixture.NON_PRESENT_ISBN
 import static io.pillopl.library.catalogue.BookInstance.instanceOf
 import static io.pillopl.library.catalogue.BookType.Restricted
 
+/**
+ * Integration tests for storing and reading catalogue books from the database.
+ */
 @SpringBootTest(classes = CatalogueConfiguration.class)
 class CatalogueDatabaseIT extends Specification {
 

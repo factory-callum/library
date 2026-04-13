@@ -28,6 +28,9 @@ import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 import static io.pillopl.library.lending.patron.model.PatronFixture.regularPatron
 import static io.pillopl.library.lending.patron.model.PatronType.Regular
 
+/**
+ * Integration tests for strong consistency between aggregates and read models.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class StrongConsistencyBetweenAggregatesAndReadModelsIT extends Specification {
 

@@ -20,6 +20,9 @@ import static io.pillopl.library.lending.patron.model.PatronEvent.BookPlacedOnHo
 import static io.pillopl.library.lending.patron.model.PatronEvent.BookPlacedOnHoldEvents.events
 import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 
+/**
+ * Integration tests for querying books on hold from the book repository.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class FindBookOnHoldInDatabaseIT extends Specification {
 

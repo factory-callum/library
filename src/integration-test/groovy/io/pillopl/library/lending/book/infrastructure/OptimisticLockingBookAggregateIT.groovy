@@ -23,6 +23,9 @@ import static io.pillopl.library.lending.patron.model.PatronEvent.BookPlacedOnHo
 import static io.pillopl.library.lending.patron.model.PatronEvent.BookPlacedOnHoldEvents.events
 import static io.pillopl.library.lending.patron.model.PatronFixture.anyPatronId
 
+/**
+ * Integration tests for optimistic locking behavior when persisting book aggregates.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class OptimisticLockingBookAggregateIT extends Specification {
 

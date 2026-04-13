@@ -23,6 +23,9 @@ import static java.time.Clock.fixed
 import static java.time.Instant.now
 import static java.time.ZoneId.systemDefault
 
+/**
+ * Integration tests for tracking overdue checkouts in the daily sheet read model.
+ */
 @SpringBootTest(classes = LendingTestContext.class)
 class FindingOverdueCheckoutsInDailySheetDatabaseIT extends Specification {
 

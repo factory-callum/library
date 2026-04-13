@@ -44,6 +44,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Integration tests for PatronProfile REST endpoints, HAL links, and hold operations.
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(PatronProfileController.class)
 @ContextConfiguration(classes = {LendingTestContext.class})
