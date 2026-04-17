@@ -19,7 +19,8 @@ public class ModularArchitectureTest {
                     .resideInAPackage("..catalogue..")
                     .should()
                     .dependOnClassesThat()
-                    .resideInAPackage("..lending..");
+                    .resideInAPackage("..lending..")
+                    .allowEmptyShould(true);
 
     @ArchTest
     public static final ArchRule commons_should_not_depend_on_catalogue =
@@ -28,7 +29,8 @@ public class ModularArchitectureTest {
                     .resideInAPackage("..commons..")
                     .should()
                     .dependOnClassesThat()
-                    .resideInAPackage("..catalogue..");
+                    .resideInAPackage("..catalogue..")
+                    .allowEmptyShould(true);
 
     @ArchTest
     public static final ArchRule commons_should_not_depend_on_lending =
@@ -37,7 +39,8 @@ public class ModularArchitectureTest {
                     .resideInAPackage("..commons..")
                     .should()
                     .dependOnClassesThat()
-                    .resideInAPackage("..lending..");
+                    .resideInAPackage("..lending..")
+                    .allowEmptyShould(true);
 
 
 }

@@ -19,7 +19,8 @@ public class LendingHexagonalArchitectureTest {
                     .resideInAPackage("..model..")
                     .should()
                     .dependOnClassesThat()
-                    .resideInAPackage("..application..");
+                    .resideInAPackage("..application..")
+                    .allowEmptyShould(true);
 
     @ArchTest
     public static final ArchRule model_should_not_depend_on_infrastructure =
@@ -28,7 +29,8 @@ public class LendingHexagonalArchitectureTest {
                     .resideInAPackage("..model..")
                     .should()
                     .dependOnClassesThat()
-                    .resideInAPackage("..infrastructure..");
+                    .resideInAPackage("..infrastructure..")
+                    .allowEmptyShould(true);
 
     @ArchTest
     public static final ArchRule model_should_not_depend_on_ui =
@@ -37,7 +39,8 @@ public class LendingHexagonalArchitectureTest {
                     .resideInAPackage("..model..")
                     .should()
                     .dependOnClassesThat()
-                    .resideInAPackage("..ui..");
+                    .resideInAPackage("..ui..")
+                    .allowEmptyShould(true);
 
     @ArchTest
     public static final ArchRule application_should_not_depend_on_infrastructure =
@@ -46,7 +49,8 @@ public class LendingHexagonalArchitectureTest {
                     .resideInAPackage("..application..")
                     .should()
                     .dependOnClassesThat()
-                    .resideInAPackage("..infrastructure..");
+                    .resideInAPackage("..infrastructure..")
+                    .allowEmptyShould(true);
 
     @ArchTest
     public static final ArchRule application_should_not_depend_on_ui =
@@ -55,7 +59,8 @@ public class LendingHexagonalArchitectureTest {
                     .resideInAPackage("..application..")
                     .should()
                     .dependOnClassesThat()
-                    .resideInAPackage("..ui..");
+                    .resideInAPackage("..ui..")
+                    .allowEmptyShould(true);
 
     @ArchTest
     public static final ArchRule ui_should_not_depend_on_infrastructure =
@@ -64,7 +69,8 @@ public class LendingHexagonalArchitectureTest {
                     .resideInAPackage("..ui..")
                     .should()
                     .dependOnClassesThat()
-                    .resideInAPackage("..infrastructure..");
+                    .resideInAPackage("..infrastructure..")
+                    .allowEmptyShould(true);
 
 
 

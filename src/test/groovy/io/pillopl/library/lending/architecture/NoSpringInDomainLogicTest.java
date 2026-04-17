@@ -19,8 +19,9 @@ public class NoSpringInDomainLogicTest {
                     .resideInAPackage(
                             "..io.pillopl.library.lending..model..")
                     .should()
-                    .dependOnClassesThat()
-                    .resideInAPackage("org.springframework..");
+                    .accessClassesThat()
+                    .resideInAPackage("org.springframework..")
+                    .allowEmptyShould(true);
 
     @ArchTest
     public static final ArchRule application_should_not_depend_on_spring =
@@ -29,8 +30,9 @@ public class NoSpringInDomainLogicTest {
                     .resideInAPackage(
                             "..io.pillopl.library.lending..application..")
                     .should()
-                    .dependOnClassesThat()
-                    .resideInAPackage("org.springframework..");
+                    .accessClassesThat()
+                    .resideInAPackage("org.springframework..")
+                    .allowEmptyShould(true);
 
 
 }

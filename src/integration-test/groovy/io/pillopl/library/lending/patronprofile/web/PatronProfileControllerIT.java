@@ -99,7 +99,7 @@ public class PatronProfileControllerIT {
                 .andExpect(jsonPath("$._embedded.holdList[0].bookId", is(bookId.getBookId().toString())))
                 .andExpect(jsonPath("$._embedded.holdList[0]._links.self.href", containsString("/profiles/" + patronId.getPatronId() + "/holds/" + bookId.getBookId())))
                 .andExpect(jsonPath("$._embedded.holdList[0].till", is(anyDate.toString())))
-                .andExpect(jsonPath("$._embedded.holdList[0]._templates.default.method", is("delete")));
+                .andExpect(jsonPath("$._embedded.holdList[0]._templates.default.method", is("DELETE")));
     }
 
     @Test
@@ -148,7 +148,7 @@ public class PatronProfileControllerIT {
                 .andExpect(header().string(CONTENT_TYPE, MediaTypes.HAL_FORMS_JSON_VALUE))
                 .andExpect(jsonPath("$.bookId", is(bookId.getBookId().toString())))
                 .andExpect(jsonPath("$.till", is(anyDate.toString())))
-                .andExpect(jsonPath("$._templates.default.method", is("delete")))
+                .andExpect(jsonPath("$._templates.default.method", is("DELETE")))
                 .andExpect(jsonPath("$._links.self.href", containsString("profiles/" + patronId.getPatronId() + "/holds/" + bookId.getBookId())));
     }
 
