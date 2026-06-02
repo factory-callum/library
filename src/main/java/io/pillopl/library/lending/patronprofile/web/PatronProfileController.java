@@ -86,7 +86,7 @@ class PatronProfileController {
                 .toStream()
                 .map(checkout -> resourceWithLinkToCheckoutSelf(patronId, checkout))
                 .collect(toList());
-        return ResponseEntity.ok(CollectionModel.of(checkouts, linkTo(methodOn(PatronProfileController.class).findHolds(patronId)).withSelfRel()));
+        return ResponseEntity.ok(CollectionModel.of(checkouts, linkTo(methodOn(PatronProfileController.class).findCheckouts(patronId)).withSelfRel()));
     }
 
     @GetMapping("/profiles/{patronId}/checkouts/{bookId}")
