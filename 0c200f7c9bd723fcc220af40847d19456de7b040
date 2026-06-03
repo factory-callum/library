@@ -1,0 +1,23 @@
+pom.xml
+  fc587621e5a80cd6 18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "0c200f7c9bd723fcc220af40847d19456de7b040",
+  "prompts": {
+    "fc587621e5a80cd6": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "015c3497-f709-4dd3-8194-08b0ca65f2c3",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Callum Miles",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
