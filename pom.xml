@@ -16,6 +16,8 @@
 
     <properties>
         <java.version>11</java.version>
+        <groovy.version>4.0.24</groovy.version>
+        <spock.version>2.4-M4-groovy-4.0</spock.version>
     </properties>
 
     <repositories>
@@ -76,23 +78,29 @@
         </dependency>
 
         <dependency>
-            <groupId>org.codehaus.groovy</groupId>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.groovy</groupId>
             <artifactId>groovy</artifactId>
-            <version>2.5.14</version>
+            <version>${groovy.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.spockframework</groupId>
             <artifactId>spock-spring</artifactId>
-            <version>1.2-groovy-2.5</version>
+            <version>${spock.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.spockframework</groupId>
             <artifactId>spock-core</artifactId>
-            <version>1.2-groovy-2.5</version>
+            <version>${spock.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -115,10 +123,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.20</version>
                 <configuration>
                     <includes>
                         <include>**/*Test.java</include>
+                        <include>**/*Test.groovy</include>
                     </includes>
                 </configuration>
             </plugin>
@@ -129,7 +137,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.1</version>
                 <executions>
                     <execution>
                         <id>integration-tests</id>
@@ -142,7 +149,7 @@
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.6.2</version>
+                <version>3.0.2</version>
                 <executions>
                     <execution>
                         <goals>
@@ -193,7 +200,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.3</version>
+                <version>0.8.12</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
