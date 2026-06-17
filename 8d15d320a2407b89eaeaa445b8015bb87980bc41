@@ -1,0 +1,23 @@
+pom.xml
+  5929d4ca1775881f 19-20,81-83,87,89,96,103,129,152,203
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "8d15d320a2407b89eaeaa445b8015bb87980bc41",
+  "prompts": {
+    "5929d4ca1775881f": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "9a66895d-661d-443e-9b44-c0b078762bd0",
+        "model": "claude-opus-4-8-fast"
+      },
+      "human_author": "Callum Miles",
+      "messages": [],
+      "total_additions": 19,
+      "total_deletions": 12,
+      "accepted_lines": 17,
+      "overriden_lines": 0
+    }
+  }
+}
