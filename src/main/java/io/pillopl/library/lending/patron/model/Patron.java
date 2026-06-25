@@ -91,7 +91,9 @@ public class Patron {
         return patronHolds.count();
     }
 
-
+    public OverdueFee lateFeeFor(@NonNull DaysOverdue daysOverdue) {
+        return LateFeePolicy.maxFeeCapPolicy.apply(daysOverdue, patron.getType());
+    }
 
 }
 
