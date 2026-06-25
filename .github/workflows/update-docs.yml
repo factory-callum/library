@@ -1,0 +1,113 @@
+name: Auto-Update Documentation
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'src/main/java/**/*.java'
+  workflow_dispatch: {}
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Factory Droid
+        run: |
+          curl -fsSL https://app.factory.ai/cli | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Get changed files
+        id: changes
+        run: |
+          git diff --name-only HEAD^ HEAD > changed_files.txt
+          echo "Files changed in last commit:"
+          cat changed_files.txt
+
+      - name: Update documentation
+        env:
+          FACTORY_API_KEY: ${{ secrets.FACTORY_API_KEY }}
+        run: |
+          droid exec --auto low "
+          The following source files were just merged to master:
+          $(cat changed_files.txt)
+
+          Your task is to update the documentation to match these code changes.
+
+          First, explore the codebase to understand context:
+          1. This is a Java / Spring Boot Domain-Driven Design project (modular monolith).
+          2. Domain logic lives under src/main/java/io/pillopl/library/**; business
+             behaviour is expressed as immutable value objects and policy functions.
+          3. Long-form documentation lives in README.md and the docs/ directory
+             (big-picture.md, design-level.md, example-mapping.md).
+
+          Then, understand what changed:
+          1. Read each changed file carefully.
+          2. Identify whether changes introduce new domain behaviour, new policies,
+             new aggregates/value objects, or modify existing business rules.
+          3. Note any new constants, fees, limits, or invariants that a reader of the
+             domain description would need to know about.
+
+          Next, find and update relevant documentation:
+          1. Search README.md and docs/ for sections that describe the affected domain
+             concept (e.g. lending, holds, checkouts, patrons, policies).
+          2. If the change introduces a self-contained new concept, create a focused
+             doc page under docs/ and link it from the README.
+          3. Update the domain description and any policy listings so they stay accurate.
+          4. Preserve the existing structure, tone, and Markdown style.
+          5. Only modify sections that are actually affected by the change.
+
+          DO NOT commit or push changes.
+
+          Finally, create doc-update-summary.md with:
+          - The list of documentation files that were created or updated.
+          - A step-by-step explanation of what changed in the code and why each doc
+            edit was made (this summary is used during code / release review).
+          - Any sections that may need human review or clarification.
+          "
+
+      - name: Commit documentation updates
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -m "docs: automated documentation updates"
+          else
+            echo "No documentation changes needed"
+            exit 0
+          fi
+
+      - name: Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="docs/auto-update-$(date +%Y%m%d-%H%M%S)"
+          git checkout -b $BRANCH
+          git push origin $BRANCH
+
+          SUMMARY=$(cat doc-update-summary.md 2>/dev/null || echo "Documentation updated to reflect recent code changes.")
+
+          gh pr create \
+            --title "docs: automated documentation updates" \
+            --body "## Automated Documentation Updates
+
+$SUMMARY
+
+### Review Checklist
+- [ ] Documentation accurately reflects code changes
+- [ ] Code examples are correct and runnable
+- [ ] No unintended changes to other sections
+- [ ] Formatting and style are consistent
+
+---
+This PR was automatically generated after code was merged to master." \
+            --label "documentation"
