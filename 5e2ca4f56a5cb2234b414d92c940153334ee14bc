@@ -1,0 +1,23 @@
+.github/workflows/update-docs.yml
+  21062a909de3da88 31-44,106-122,126
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "5e2ca4f56a5cb2234b414d92c940153334ee14bc",
+  "prompts": {
+    "21062a909de3da88": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "f9fff7d4-9fde-4b20-b579-8cbd9b4d8f28",
+        "model": "claude-opus-4-8-fast"
+      },
+      "human_author": "Callum Miles",
+      "messages": [],
+      "total_additions": 32,
+      "total_deletions": 18,
+      "accepted_lines": 32,
+      "overriden_lines": 0
+    }
+  }
+}
