@@ -41,7 +41,10 @@ taking a look at daily sheet with expiring holds. Only a researcher patron can r
 an open-ended hold duration. Any patron with more than two overdue checkouts at a library
 branch will get a rejection if trying a hold at that same library branch. A book can be
 checked out for up to 60 days. Check for overdue checkouts is done by taking a look at
-daily sheet with overdue checkouts. Patron interacts with his/her current holds, checkouts, etc.
+daily sheet with overdue checkouts. A checkout returned after this period accrues a
+late fee of $0.25 per overdue day; researcher patrons receive a 50% discount and the
+fee is capped at $30.00 (see [Late fees](docs/late-fees.md) for details).
+Patron interacts with his/her current holds, checkouts, etc.
 by taking a look at patron profile. Patron profile looks like a daily sheet, but the
 information there is limited to one patron and is not necessarily daily. Currently a
 patron can see current holds (not canceled nor expired) and current checkouts (including overdue).
