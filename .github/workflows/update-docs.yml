@@ -28,8 +28,20 @@ jobs:
       - name: Get changed files
         id: changes
         run: |
-          git diff --name-only HEAD^ HEAD > changed_files.txt
-          echo "Files changed in last commit:"
+          if git rev-parse HEAD^ >/dev/null 2>&1; then
+            git diff --name-only HEAD^ HEAD > changed_files.txt
+          else
+            git diff --name-only HEAD > changed_files.txt
+          fi
+          # Manual runs (workflow_dispatch) may land on a commit that did not touch
+          # source. Fall back to the most recent commit that changed main source.
+          if ! grep -q 'src/main/java/.*\.java' changed_files.txt; then
+            LAST=$(git log -1 --format=%H -- 'src/main/java/**/*.java')
+            if [ -n "$LAST" ]; then
+              git diff --name-only "$LAST^" "$LAST" > changed_files.txt
+            fi
+          fi
+          echo "Files changed:"
           cat changed_files.txt
 
       - name: Update documentation
@@ -91,23 +103,25 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           BRANCH="docs/auto-update-$(date +%Y%m%d-%H%M%S)"
-          git checkout -b $BRANCH
-          git push origin $BRANCH
+          git checkout -b "$BRANCH"
+          git push origin "$BRANCH"
 
-          SUMMARY=$(cat doc-update-summary.md 2>/dev/null || echo "Documentation updated to reflect recent code changes.")
+          {
+            echo "## Automated Documentation Updates"
+            echo
+            cat doc-update-summary.md 2>/dev/null || echo "Documentation updated to reflect recent code changes."
+            echo
+            echo "### Review Checklist"
+            echo "- [ ] Documentation accurately reflects code changes"
+            echo "- [ ] Code examples are correct and runnable"
+            echo "- [ ] No unintended changes to other sections"
+            echo "- [ ] Formatting and style are consistent"
+            echo
+            echo "---"
+            echo "This PR was automatically generated after code was merged to master."
+          } > pr_body.md
 
           gh pr create \
             --title "docs: automated documentation updates" \
-            --body "## Automated Documentation Updates
-
-$SUMMARY
-
-### Review Checklist
-- [ ] Documentation accurately reflects code changes
-- [ ] Code examples are correct and runnable
-- [ ] No unintended changes to other sections
-- [ ] Formatting and style are consistent
-
----
-This PR was automatically generated after code was merged to master." \
+            --body-file pr_body.md \
             --label "documentation"
