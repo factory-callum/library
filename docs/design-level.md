@@ -155,6 +155,11 @@ Moreover we do not expect the **returned book** to be ever registered as **overd
 
 ![Overdue checkout example 2](images/dl/overduecheckouts/example-2.png)  
 
+Once a checkout is overdue, the patron owes a **late fee** that grows with the number of overdue
+days. The fee is reduced for **researcher patrons** and is capped at a maximum amount. This is
+modelled as a set of pure policy functions and immutable value objects, described in detail in
+[Late Fees](late-fees.md).
+
 ## Adding to catalogue
 
 The last area of analysis is the book **catalogue**. Catalogue is a collection of books and their instances.

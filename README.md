@@ -41,7 +41,9 @@ taking a look at daily sheet with expiring holds. Only a researcher patron can r
 an open-ended hold duration. Any patron with more than two overdue checkouts at a library
 branch will get a rejection if trying a hold at that same library branch. A book can be
 checked out for up to 60 days. Check for overdue checkouts is done by taking a look at
-daily sheet with overdue checkouts. Patron interacts with his/her current holds, checkouts, etc.
+daily sheet with overdue checkouts. An overdue checkout accrues a late fee that grows with the
+number of overdue days, with a reduced rate for researcher patrons and an upper cap on the total
+fee (see [Late Fees](docs/late-fees.md)). Patron interacts with his/her current holds, checkouts, etc.
 by taking a look at patron profile. Patron profile looks like a daily sheet, but the
 information there is limited to one patron and is not necessarily daily. Currently a
 patron can see current holds (not canceled nor expired) and current checkouts (including overdue).
@@ -78,6 +80,7 @@ Please follow the links below to get more details on each of the mentioned steps
 - [Big Picture EventStorming](./docs/big-picture.md)
 - [Example Mapping](docs/example-mapping.md)
 - [Design Level EventStorming](docs/design-level.md)
+- [Late Fees](docs/late-fees.md)
 
 ### Project structure and architecture
 At the very beginning, not to overcomplicate the project, we decided to assign each bounded context

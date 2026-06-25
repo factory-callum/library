@@ -1,0 +1,6 @@
+src/main/java/io/pillopl/library/lending/patron/model/DaysOverdue.java
+src/main/java/io/pillopl/library/lending/patron/model/LateFeeCalculator.java
+src/main/java/io/pillopl/library/lending/patron/model/LateFeePolicy.java
+src/main/java/io/pillopl/library/lending/patron/model/OverdueFee.java
+src/main/java/io/pillopl/library/lending/patron/model/Patron.java
+src/test/groovy/io/pillopl/library/lending/patron/model/LateFeeCalculatorTest.groovy
