@@ -1,0 +1,29 @@
+.github/workflows/update-docs.yml
+  21062a909de3da88 1-113
+doc-update-summary.md
+  21062a909de3da88 1-49
+docs/late-fees.md
+  21062a909de3da88 1-60
+README.md
+  21062a909de3da88 44-46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "cd7935b8fd6c6739e08ad9499e1b3259d6ac6b31",
+  "prompts": {
+    "21062a909de3da88": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "f9fff7d4-9fde-4b20-b579-8cbd9b4d8f28",
+        "model": "claude-opus-4-8-fast"
+      },
+      "human_author": "Callum Miles",
+      "messages": [],
+      "total_additions": 226,
+      "total_deletions": 1,
+      "accepted_lines": 225,
+      "overriden_lines": 0
+    }
+  }
+}
